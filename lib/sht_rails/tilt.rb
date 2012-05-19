@@ -17,12 +17,13 @@ module ShtRails
       <<-HandlebarsTemplate
   (function() { 
   #{namespace} || (#{namespace} = {});
+  #{namespace}CachedShtTemplates || (#{namespace}CachedShtTemplates = {});
+  #{namespace}CachedShtTemplates[#{template_key.inspect}] = Handlebars.compile(#{data.inspect});
   #{namespace}[#{template_key.inspect}] = function(object) {
-    var template = Handlebars.compile(#{data.inspect});
     if (object == null){
-      return template;
+      return #{ShtRails.template_namespace}CachedShtTemplates[#{template_key.inspect}];
     } else {
-      return template(object);
+      return #{ShtRails.template_namespace}CachedShtTemplates[#{template_key.inspect}](object);
     }
   };
   }).call(this);
