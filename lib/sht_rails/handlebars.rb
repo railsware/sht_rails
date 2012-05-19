@@ -7,8 +7,11 @@ module ShtRails
     def self.call(template)
       if template.locals.include?(ShtRails.action_view_key.to_s) || template.locals.include?(ShtRails.action_view_key.to_sym)
 <<-SHT
-  handlebars_context = Handlebars::Context.new
-  handlebars_context.compile(#{template.source.inspect}).call(#{ShtRails.action_view_key.to_s} || {}).html_safe
+  hbs_context_for_sht = Handlebars::Context.new
+  partials.each do |key, value|
+    hbs_context_for_sht.register_partial(key, value)
+  end if defined?(partials) && partials.is_a?(Hash)
+  hbs_context_for_sht.compile(#{template.source.inspect}).call(#{ShtRails.action_view_key.to_s} || {}).html_safe
 SHT
       else
         "#{template.source.inspect}.html_safe"
