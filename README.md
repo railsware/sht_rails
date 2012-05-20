@@ -20,7 +20,7 @@ Or install it yourself as:
 
     $ rails g sht_rails:install
 
-Generator add into "application.js" requirements for mustache and "templates" folder in "app". Next you can create mustache templates in this folder or subfolders.
+Generator add into "application.js" requirements for mustache and "templates" folder in "app". Next you can create handlebars templates in this folder or subfolders.
 
 For example:
 
@@ -47,7 +47,7 @@ The same template you can render in JavaScript:
 
 ## Demo
 
-Site: [http://st-rails-example.herokuapp.com/](http://st-rails-example.herokuapp.com/)
+Site: [http://st-rails-example.herokuapp.com/sht](http://st-rails-example.herokuapp.com/sht)
 
 Source code: [https://github.com/le0pard/st_rails_example](https://github.com/le0pard/st_rails_example)
 
