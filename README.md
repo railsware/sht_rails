@@ -47,7 +47,7 @@ The same template you can render in JavaScript:
 
 ## Demo
 
-Site: [http://st-rails-example.herokuapp.com/sht](http://st-rails-example.herokuapp.com/sht)
+Site: [http://st-rails-example.herokuapp.com](http://st-rails-example.herokuapp.com)
 
 Source code: [https://github.com/le0pard/st_rails_example](https://github.com/le0pard/st_rails_example)
 
