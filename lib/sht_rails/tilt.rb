@@ -1,4 +1,5 @@
 require 'tilt'
+require 'execjs'
 
 module ShtRails
   class Tilt < Tilt::Template
@@ -12,20 +13,20 @@ module ShtRails
 
     attr_reader :namespace
 
+    def precompile(template)
+      @context ||= begin
+        handlebars_path = File.expand_path("../../../vendor/assets/javascripts/handlebars.js", __FILE__)
+        ExecJS.compile File.read(handlebars_path)
+      end
+      @context.call("Handlebars.precompile", template)
+    end
+
     def evaluate(scope, locals, &block)
       template_key = path_to_key scope
       <<-HandlebarsTemplate
   (function() { 
   #{namespace} || (#{namespace} = {});
-  #{namespace}CachedShtTemplates || (#{namespace}CachedShtTemplates = {});
-  #{namespace}CachedShtTemplates[#{template_key.inspect}] = Handlebars.compile(#{data.inspect});
-  #{namespace}[#{template_key.inspect}] = function(object) {
-    if (object == null){
-      return #{ShtRails.template_namespace}CachedShtTemplates[#{template_key.inspect}];
-    } else {
-      return #{ShtRails.template_namespace}CachedShtTemplates[#{template_key.inspect}](object);
-    }
-  };
+  #{namespace}[#{template_key.inspect}] = Handlebars.template(#{precompile(data)});
   }).call(this);
       HandlebarsTemplate
     end
