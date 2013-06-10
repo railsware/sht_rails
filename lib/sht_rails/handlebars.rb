@@ -9,6 +9,11 @@ module ShtRails
       @context ||= begin
         context = ::Handlebars::Context.new
         if helpers = Rails.application.assets.find_asset(ShtRails.helper_path)
+          if ShtRails.ruby_helpers.is_a? Hash
+            ShtRails.ruby_helpers.each do |k,v|
+              context.runtime[k] = v
+            end
+          end
           context.runtime.eval helpers.source
         end
         partials.each { |key, value| context.register_partial(key, value) } if partials

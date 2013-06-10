@@ -10,7 +10,7 @@ module ShtRails
   # end
 
   module Config
-    attr_accessor :template_base_path, :template_extension, :action_view_key, :template_namespace, :helper_path
+    attr_accessor :template_base_path, :template_extension, :action_view_key, :template_namespace, :helper_path, :ruby_helpers
 
     def configure
       yield self
@@ -35,5 +35,8 @@ module ShtRails
     def helper_path
       @helper_path ||= 'templates/helpers.js'
     end
+    
+    def ruby_helpers
+      @ruby_helpers ||= {}
   end
 end
