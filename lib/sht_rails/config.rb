@@ -38,5 +38,6 @@ module ShtRails
     
     def ruby_helpers
       @ruby_helpers ||= {}
+    end
   end
 end
