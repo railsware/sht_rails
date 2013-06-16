@@ -3,9 +3,7 @@ require 'execjs'
 
 module ShtRails
   class Tilt < Tilt::Template
-    def self.default_mime_type
-      'application/javascript'
-    end
+    self.default_mime_type = 'application/javascript'
 
     def prepare
       @namespace = "this.#{ShtRails.template_namespace}"
@@ -24,13 +22,13 @@ module ShtRails
     def evaluate(scope, locals, &block)
       template_key = path_to_key scope
       <<-HandlebarsTemplate
-  (function() { 
+  (function() {
   #{namespace} || (#{namespace} = {});
   #{namespace}[#{template_key.inspect}] = Handlebars.template(#{precompile(data)});
   }).call(this);
       HandlebarsTemplate
     end
-    
+
     def path_to_key(scope)
       path = scope.logical_path.to_s.split('/')
       path.last.gsub!(/^_/, '')

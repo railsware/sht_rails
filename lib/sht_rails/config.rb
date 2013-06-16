@@ -10,7 +10,9 @@ module ShtRails
   # end
 
   module Config
-    attr_accessor :template_base_path, :template_extension, :action_view_key, :template_namespace, :helper_path
+    extend self
+
+    attr_writer :template_base_path, :template_extension, :action_view_key, :template_namespace, :helper_path
 
     def configure
       yield self
