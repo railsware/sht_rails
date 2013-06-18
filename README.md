@@ -45,7 +45,9 @@ The same template you can render in JavaScript:
       config.template_base_path = Rails.root.join("app", "templates") # templates dir
     end
     
-### Note: In Rails3, if you have config.assets.initialize_on_precompile set to false, but have placed the above config in an initializer, it will not run. To get around this, you can do the following in application.rb:
+### Note on precompiling assets and custom configs
+
+In Rails3, if you have config.assets.initialize_on_precompile set to false, but have placed the above config in an initializer, it will not run. To get around this, you can do the following in application.rb:
 
     if "assets" == ENV["RAILS_GROUPS"] || ["development", "test"].include?(ENV["RAILS_ENV"])
       # Your custom sht_rails config goes here
