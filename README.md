@@ -43,6 +43,10 @@ The same template you can render in JavaScript:
       config.action_view_key    = 'handlebars' # change name of key for rendering in ActionView mustache template
       config.template_namespace = 'SHT'      # change templates namespace in javascript
       config.template_base_path = Rails.root.join("app", "templates") # templates dir
+      config.ruby_helpers = {
+        # Use this in your handlebars templates via: {{rubyFormatDateTime someDate "%Y-%m-%d"}}
+        :rubyFormatDateTime => lambda { |context, dateTime, format| dateTime.strftime(format) }
+      }
     end
     
 ### Note on precompiling assets and custom configs
