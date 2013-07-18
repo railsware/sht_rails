@@ -45,6 +45,21 @@ The same template you can render in JavaScript:
       config.template_base_path = Rails.root.join("app", "templates") # templates dir
     end
 
+### Heroku
+
+On heroku you can set in application.rb (not only on heroku):
+
+    config.assets.initialize_on_precompile = false
+
+In this case scripts from config/initializers is not loading for assets:precompile.
+
+To solve this problem we should set "templates_namespace" for example in application.rb:
+
+    if "assets" == ENV["RAILS_GROUPS"] || ["development", "test"].include?(ENV["RAILS_ENV"])
+      ShtRails.template_namespace = 'JST'
+    end
+
+
 ## Demo
 
 Site: [http://st-rails-example.herokuapp.com](http://st-rails-example.herokuapp.com)
