@@ -1,6 +1,6 @@
 # ShtRails
 
-Shared handlebars templates for rails 3.
+Shared handlebars templates for rails 3 and 4.
 
 ## Installation
 
@@ -30,7 +30,7 @@ File: "app/templates/tests/_test.handlebars"
 
 In view you can render this template by this way:
 
-    <%= render "tests/test", :handlebars => {msg: "Test"} %> 
+    <%= render "tests/test", :handlebars => {msg: "Test"} %>
 
 The same template you can render in JavaScript:
 
