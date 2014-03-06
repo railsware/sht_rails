@@ -9,7 +9,7 @@ module ShtRails
       @context ||= begin
         context = ::Handlebars::Context.new
         if helpers = Rails.application.assets.find_asset(ShtRails.helper_path)
-          context.runtime.eval helpers.source
+          context.instance_variable_get(:@js).eval helpers.source
         end
         partials.each { |key, value| context.register_partial(key, value) } if partials
         context
