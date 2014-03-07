@@ -24,7 +24,7 @@ module ShtRails
       <<-HandlebarsTemplate
   (function() {
   #{namespace} || (#{namespace} = {});
-  #{namespace}[#{template_key.inspect}] = Handlebars.template(#{precompile(data)});
+  Handlebars.partials[#{template_key.inspect}] = #{namespace}[#{template_key.inspect}] = Handlebars.template(#{precompile(data)});
   }).call(this);
       HandlebarsTemplate
     end
