@@ -1,3 +1,6 @@
+require 'sht_rails/asset_dependency'
+require 'sht_rails/content_dependency'
+
 module ShtRails
   # Change config options in an initializer:
   #
@@ -12,7 +15,7 @@ module ShtRails
   module Config
     extend self
 
-    attr_writer :template_base_path, :template_extension, :action_view_key, :template_namespace, :helper_path
+    attr_writer :template_base_path, :template_extension, :action_view_key, :template_namespace, :helper_path, :dependencies
 
     def configure
       yield self
@@ -36,6 +39,10 @@ module ShtRails
 
     def helper_path
       @helper_path ||= 'templates/helpers.js'
+    end
+
+    def dependencies
+      @dependencies ||= []
     end
   end
 end
