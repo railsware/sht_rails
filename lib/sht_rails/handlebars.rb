@@ -5,8 +5,7 @@ module ShtRails
 
   module Handlebars
     def self.context(partials = nil)
-      @context = nil unless ActionView::Resolver.caching?
-      @context ||= begin
+      @context = begin
         context = ::Handlebars::Context.new
         runtime = context.instance_variable_get(:@js)
 
